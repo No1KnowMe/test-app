@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 // Requests list route;
 Route::get('/requests_list', [\App\Http\Controllers\RequestsListController::class, 'index']);
+// Details of request by ID;
+Route::get('/request/{request}', [\App\Http\Controllers\RequestsListController::class, 'detail']);
 // Authentication form route;
 Route::get('/authentication', [\App\Http\Controllers\AuthenticationController::class, 'index']);
 // Registration form route;
