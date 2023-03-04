@@ -15,7 +15,7 @@ return new class extends Migration
             // Request ID;
             $table->id();
             // Client ID;
-            $table->unsignedBigInteger('client_id');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             // Request title;
             $table->string('title');
             // Request text;

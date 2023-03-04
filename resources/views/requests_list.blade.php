@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <title>Requests List</title>
+    <title>Список заявок</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
@@ -12,6 +12,10 @@
 
 
     <style>
+        th,td {
+            text-align: center;
+        }
+
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -74,14 +78,14 @@
 <body>
 
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Company name</a>
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Лого компании</a>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
+    <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Поиск" aria-label="Search">
     <div class="navbar-nav">
         <div class="nav-item text-nowrap">
-            <a class="nav-link px-3" href="#">Sign out</a>
+            <a class="nav-link px-3" href="#">Выйти</a>
         </div>
     </div>
 </header>
@@ -91,28 +95,34 @@
 
         <main class="col">
 
-            <h2 style="text-align: center">Requests List</h2>
+            <h2 style="text-align: center">Список заявок</h2>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
                     <thead>
                     <tr>
                         <th scope="col">#ID</th>
-                        <th scope="col">Client ID</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Content</th>
-                        <th scope="col">Attached file link</th>
-                        <th scope="col">Created at</th>
+                        <th scope="col">ID Клиента</th>
+                        <th scope="col">Время создания Клиента</th>
+                        <th scope="col">Время отправки сообщения</th>
+                        <th scope="col">Имя Клиента</th>
+                        <th scope="col">E-mail Клиента</th>
+                        <th scope="col">Тема сообщения</th>
+                        <th scope="col">Текст сообщения</th>
+                        <th scope="col">Ссылка на прикрепленный файл</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($requests as $request)
                     <tr>
                         <td><a href="/request/{{ $request->id }}">{{ $request->id }}</a></td>
-                        <td>{{ $request->client_id }}</td>
+                        <td>{{ $request->user_id }}</td>
+                        <td>{{ $request->user->created_at }}</td>
+                        <td>{{ $request->created_at }}</td>
+                        <td>{{ $request->user->name }}</td>
+                        <td>{{ $request->user->email }}</td>
                         <td>{{ $request->title }}</td>
                         <td>{{ $request->content }}</td>
                         <td>{{ $request->file_link }}</td>
-                        <td>{{ $request->created_at }}</td>
                     </tr>
                     @endforeach
                     </tbody>

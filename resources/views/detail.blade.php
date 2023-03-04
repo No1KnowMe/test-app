@@ -55,7 +55,7 @@
         <h1 class="display-5 fw-bold">{{ $request->title }}</h1>
         <div class="col-lg-6 mx-auto">
             <p class="lead mb-4">Request ID: {{ $request->id }}</p>
-            <p class="lead mb-4">From Client ID: {{ $request->client_id }}</p>
+            <p class="lead mb-4">From Client: {{ $request->user->name }} {{ $request->user->email }}</p>
             <p class="lead mb-4">{{ $request->content }}</p>
             <p class="lead mb-4"><a class="btn btn-primary" href="{{ $request->file_link }}" target="_blank">Attached file link</a></p>
             <p class="lead mb-4">Request created at: {{ $request->created_at }}</p>
